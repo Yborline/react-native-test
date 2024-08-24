@@ -1,44 +1,89 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, SafeAreaView, FlatList } from "react-native";
+import { Image, StyleSheet, Platform } from "react-native";
 
-const COURSES = [
-  {
-    id: "45k6-j54k-4jth",
-    title: "HTML",
-  },
-  {
-    id: "4116-jfk5-43rh",
-    title: "JavaScriptss",
-  },
-  {
-    id: "4d16-5tt5-4j55",
-    title: "React",
-  },
-  {
-    id: "LG16-ant5-0J25",
-    title: "React Native",
-  },
-];
+import { HelloWave } from "@/components/HelloWave";
+import ParallaxScrollView from "@/components/ParallaxScrollView";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { useFonts } from "expo-font";
 
-export default function App() {
-  const [courses, setCourses] = useState(COURSES);
-  console.log(courses);
+export default function HomeScreen() {
+  const [fontsLoaded] = useFonts({
+    DMSerifItal: require("../../assets/fonts/DMSerif/DMSerifText-Italic.ttf"),
+    DMSerifReg: require("../../assets/fonts/DMSerif/DMSerifText-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={courses}
-        renderItem={({ item }) => <Text>{item.title}</Text>}
-        keyExtractor={(item) => item.id}
-      />
-    </SafeAreaView>
+    <ParallaxScrollView
+      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
+      headerImage={
+        <Image
+          source={require("@/assets/images/partial-react-logo.png")}
+          style={styles.reactLogo}
+        />
+      }
+    >
+      <ThemedView style={styles.titleContainer}>
+        <ThemedText style={styles.italicText} type="title">
+          Welcome!
+        </ThemedText>
+        <HelloWave />
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
+        <ThemedText>
+          Edit{" "}
+          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText>{" "}
+          to see changes. Press{" "}
+          <ThemedText type="defaultSemiBold">
+            {Platform.select({ ios: "cmd + d", android: "cmd + m" })}
+          </ThemedText>{" "}
+          to open developer tools.
+        </ThemedText>
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
+        <ThemedText>
+          Tap the Explore tab to learn more about what's included in this
+          starter app.
+        </ThemedText>
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
+        <ThemedText>
+          When you're ready, run{" "}
+          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText>{" "}
+          to get a fresh <ThemedText type="defaultSemiBold">app</ThemedText>{" "}
+          directory. This will move the current{" "}
+          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
+          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+        </ThemedText>
+      </ThemedView>
+    </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  titleContainer: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#ecf0f1",
+    gap: 8,
+  },
+  stepContainer: {
+    gap: 8,
+    marginBottom: 8,
+  },
+  italicText: {
+    fontFamily: "DMSerifReg", // Застосовуємо шрифт DMSerif-Italic
+    fontSize: 20,
+  },
+  reactLogo: {
+    height: 178,
+    width: 290,
+    bottom: 0,
+    left: 0,
+    position: "absolute",
   },
 });
