@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "react-native-test",
-    "slug": "react-native-test",
+    "name": "Borys",
+    "slug": "borys",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "borys",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
