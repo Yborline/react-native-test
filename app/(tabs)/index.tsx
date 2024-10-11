@@ -12,6 +12,7 @@ export default function HomeScreen() {
   const [fontsLoaded] = useFonts({
     DMSerifItal: require("../../assets/fonts/DMSerif/DMSerifText-Italic.ttf"),
     DMSerifReg: require("../../assets/fonts/DMSerif/DMSerifText-Regular.ttf"),
+    Rubick: require("../../assets/fonts/Rubick/RubikWetPaint-Regular.ttf"),
   });
 
   if (!fontsLoaded) {
@@ -21,7 +22,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <Text>Hello</Text>
       <StatusBar style="auto" />
-      <Link href="./profile" style={{ color: "blue" }}>
+      <Link href="./register" style={{ color: "blue" }}>
         Go to Profile
       </Link>
     </View>
