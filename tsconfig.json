@@ -2,11 +2,17 @@
   "compilerOptions": {
     "jsx": "react-native",
     "strict": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./", // Вказує на кореневу папку проєкту
     "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+      "@app/*": ["app/*"],
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@hooks/*": ["hooks/*"],
+      "@constants/*": ["constants/*"]
+    },
+    "resolveJsonModule": true 
   },
   "include": [
     "**/*.ts",
