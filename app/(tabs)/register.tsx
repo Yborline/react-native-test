@@ -11,13 +11,15 @@ import {
   ImageBackground,
   TouchableOpacity,
 } from "react-native";
-import startBg from "../../assets/images/background/startBg.png";
+import startBg from "@assets/images/background/startBg.png";
 import { useState } from "react";
 import { TextInput } from "react-native";
 import { Link } from "expo-router";
+import Input from "@components/input/Input";
+import InputPassword from "@components/input/InputPassword/InputPassword";
 const Register = () => {
   const [name, setName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const handleLogin = () => {
@@ -29,34 +31,29 @@ const Register = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.conteiner}>
           <KeyboardAvoidingView
-            keyboardVerticalOffset={-150}
+            keyboardVerticalOffset={-200}
             style={styles.boxAboiding}
             behavior={"padding"}
           >
             <View style={styles.boxForm}>
-              <Text style={styles.textTitle}>Реєстрація</Text>
-              <TextInput
-                placeholder="Ваше ім'я"
-                style={styles.textInput}
-                // autoFocus={true}
-                onChangeText={setName}
-              />
-              <TextInput
-                placeholder="Ваше прізвище"
-                style={styles.textInput}
-                // autoFocus={true}
-                onChangeText={setPassword}
-              />
-              <TextInput
-                placeholder="Пароль"
-                style={[styles.textInput, styles.changeMargin]}
-                // autoFocus={true}
-                onChangeText={setLastName}
-              />
+              <View style={styles.boxInput}>
+                <Text style={styles.textTitle}>Реєстрація</Text>
+                <Input
+                  type="username"
+                  placeholder="Ваш логін"
+                  onChange={setName}
+                />
+                <Input
+                  type="emailAddress"
+                  placeholder="Ваша електронна адреса"
+                  onChange={setEmail}
+                />
+                <InputPassword placeholder="Пароль" onChange={setPassword} />
+              </View>
               <TouchableOpacity style={styles.buttonAuth} onPress={handleLogin}>
                 <Text style={styles.buttonText}>Register</Text>
               </TouchableOpacity>
-              <Link href="./login" style={styles.linkText}>
+              <Link href="/login" style={styles.linkText}>
                 Вже є акаунт? Увійти
               </Link>
             </View>
@@ -133,5 +130,8 @@ const styles = StyleSheet.create({
     textAlign: `center`,
     marginTop: 16,
     color: `#1B4371`,
+  },
+  boxInput: {
+    marginBottom: 43,
   },
 });
