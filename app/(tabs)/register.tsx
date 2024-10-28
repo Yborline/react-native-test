@@ -30,9 +30,6 @@ const Register = () => {
   const handleLogin = () => {
     Alert.alert("Credentials", `${name} + ${password}`);
   };
-  const handleTouchMove = (event) => {
-    console.log("sssss");
-  };
 
   const pickImage = async () => {
     // Запит дозволу на доступ до галереї
@@ -49,7 +46,7 @@ const Register = () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [3, 3],
       quality: 1,
     });
 
@@ -75,7 +72,10 @@ const Register = () => {
                   style={{ width: "100%", height: "100%" }}
                   source={image ? { uri: image } : undefined}
                 >
-                  <SvgAdd fill="gray" />
+                  <SvgAdd
+                    rotate={Boolean(image)}
+                    fill={image ? "gray" : "orange"}
+                  />
                   {/* <SvgComponent style={styles.add} fill="gray" /> */}
                 </ImageBackground>
               </View>
@@ -91,7 +91,7 @@ const Register = () => {
                   placeholder="Ваша електронна адреса"
                   onChange={setEmail}
                 />
-                <InputPassword placeholder="Пароль" onChange={setPassword} />
+                {/* <InputPassword placeholder="Пароль" onChange={setPassword} /> */}
               </View>
               <TouchableOpacity style={styles.buttonAuth} onPress={handleLogin}>
                 <Text style={styles.buttonText}>Register</Text>
