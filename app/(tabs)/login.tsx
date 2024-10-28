@@ -38,6 +38,7 @@ const Login = () => {
               <View style={styles.boxInput}>
                 <Text style={styles.textTitle}>Увійти</Text>
                 <Input
+                  type="emailAddress"
                   placeholder="Ваша електронна адреса"
                   onChange={setEmail}
                 />
